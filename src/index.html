@@ -62,9 +62,9 @@
       const minuteHand = document.getElementById('minuteHand');
       const secondHand = document.getElementById('secondHand');
 
-      hourHand.innerHTML = transformAndRotatePairs(hours, 3);
-      minuteHand.innerHTML = transformAndRotatePairs(minutes, 5);
-      secondHand.innerHTML = transformAndRotatePairs(seconds, 6);
+      hourHand.innerHTML = transformAndRotatePairs(hours, 4);
+      minuteHand.innerHTML = transformAndRotatePairs(minutes, 6);
+      secondHand.innerHTML = transformAndRotatePairs(seconds, 7);
 
       positionClockHands(hourHand, calculateHourAngle(hours, minutes));
       positionClockHands(minuteHand, calculateMinuteAngle(minutes, seconds));
