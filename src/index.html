@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vw; /* Swap height and width for rotation */
+      width: 50vh;
+      margin: 0;
+      background-color: #fff;
+      transform: rotate(90deg); /* Rotate 90 degrees to the right */
+      border: 5px solid #E0BFB8;
+      border-radius: 15px; 
+      margin-top: 7vw;
+      margin-left: 4vw;
+    }
+
+    .hand {
+      position: absolute;
+      font-size: 20px;
+      font-weight: bold;
+      white-space: nowrap;
+      transform-origin: 100% 50%;
+      transition: transform 1s linear; /* Add transition for smooth movement */
+    }
+
+    .rotated-pair {
+      display: inline-block;
+      transform: rotate(90deg) scaleX(0.6);
+    }
+
+    #hourHand {
+      color: #333;
+    }
+
+    #minuteHand {
+      color: #333;
+    }
+
+    #secondHand {
+      color: red;
+    }
+  </style>
+  <title>Analog Clock</title>
+</head>
+<body>
+  <div class="hand" id="hourHand"></div>
+  <div class="hand" id="minuteHand"></div>
+  <div class="hand" id="secondHand"></div>
+
+  <script>
+    function updateClockHands() {
+      const now = new Date();
+      const hours = now.getHours() % 12 || 12; // Convert to 12-hour format
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+
+      const hourHand = document.getElementById('hourHand');
+      const minuteHand = document.getElementById('minuteHand');
+      const secondHand = document.getElementById('secondHand');
+
+      hourHand.innerHTML = transformAndRotatePairs(hours, 3);
+      minuteHand.innerHTML = transformAndRotatePairs(minutes, 5);
+      secondHand.innerHTML = transformAndRotatePairs(seconds, 6);
+
+      positionClockHands(hourHand, calculateHourAngle(hours, minutes));
+      positionClockHands(minuteHand, calculateMinuteAngle(minutes, seconds));
+      positionClockHands(secondHand, calculateSecondAngle(seconds));
+    }
+
+    function transformAndRotatePairs(value, count) {
+      const digit = value < 10 ? '0' + value : value.toString();
+      const transformedDigit = `<span class="rotated-pair">${digit}</span>`;
+      const rotatedPairs = Array.from({ length: count }, () => transformedDigit).join('');
+      return rotatedPairs;
+    }
+
+    function positionClockHands(hand, angle) {
+      hand.style.transform = `translateX(-50%) translateY(-80%) rotate(${angle}deg)`;
+    }
+
+    function calculateHourAngle(hours, minutes) {
+      return (30 * hours) + (0.5 * minutes);
+    }
+
+    function calculateMinuteAngle(minutes, seconds) {
+      return (6 * minutes) + (0.1 * seconds);
+    }
+
+    function calculateSecondAngle(seconds) {
+      return 6 * seconds;
+    }
+
+    setInterval(updateClockHands, 1000);
+    updateClockHands(); // Initial call to display clock hands immediately
+  </script>
+</body>
+</html>
