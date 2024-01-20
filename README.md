@@ -24,7 +24,8 @@
 - **Smooth Movement:** The second hand exhibits smooth and continuous movement for a visually appealing experience.<br><br>
 
 ## Usage<br>
-Simply open the HTML file in your web browser to witness the captivating display of time.<br><br><br>
+Simply open the HTML file in your web browser to witness the captivating display of time.<br>
+Or, <a href="https://joshi-exe.github.io/test-pages/">try here</a>. <br><br><br>
 
 Feel free to explore and customize the code to suit your preferences.<br><br>
 
